@@ -14,7 +14,7 @@ if (!$conn) {
 }
 
 // Prepare the SQL statement to retrieve the manager data
-$sql = "SELECT * FROM manager";
+$sql = "SELECT * FROM customers";
 
 // Execute the SQL statement
 $result = mysqli_query($conn, $sql);
@@ -24,9 +24,9 @@ if (mysqli_num_rows($result) > 0) {
     // If there are, display the data in an unordered list
     echo "<ul>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<li><strong>Manager ID:</strong> ".$row['manager_id']."</li>";
-        echo "<li><strong>First Name:</strong> ".$row['manager_first_name']."</li>";
-        echo "<li><strong>Last Name:</strong> ".$row['manager_last_name']."</li>";
+
+        echo "<li><strong>First Name:</strong> ".$row['customer_first_name']."</li>";
+        echo "<li><strong>Last Name:</strong> ".$row['customer_last_name']."</li>";
         echo "<li><strong>Address:</strong> ".$row['street_address']."</li>";
         echo "<li><strong>City:</strong> ".$row['city']."</li>";
         echo "<li><strong>State:</strong> ".$row['state']."</li>";
@@ -35,11 +35,11 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo "</ul>";
 
-    echo '<img src="ManagerIcon.png" alt="Image" class="right-image">';
+    //echo '<img src="ManagerIcon.png" alt="Image" class="right-image">';
 
 } else {
     // If there aren't, display a message
-    echo "No managers found.";
+    echo "No customers found.";
 }
 
 // Close the MySQL connection
@@ -47,9 +47,9 @@ mysqli_close($conn);
 ?>
 
 <div class="buttons-container">
-    <button><a href="Workers.php">Workers</a></button>
-    <button><a href="Ingredient_Inventory_Report.php">Ingredients</a></button>
-    <button><a href="Product_Inventory_Report.php">Products</a></button>
+    <button><a href="Order.php">Order</a></button>
+    <button><a href="Customer_Invoice.php">Invoice</a></button>
+  
 </div>
 
 

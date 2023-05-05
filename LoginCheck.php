@@ -2,7 +2,7 @@
 // Change these settings to match your MySQL database
 $servername = "localhost";
 $username = "root";
-$password = "Johnhare231!";
+$password = "012357748";
 $dbname = "Bakery";
 
 // Create a connection to the MySQL database
@@ -31,7 +31,7 @@ if (mysqli_num_rows($result) == 1) {
         header('Location: Manager.php');
     } 
     else if ($row['account_type'] == 'user'){
-        header('Location: User.html');
+        header('Location: User.php');
     }
 } else {
     // If there isn't, the user's credentials are invalid
