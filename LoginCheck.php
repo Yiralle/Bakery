@@ -18,7 +18,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Prepare the SQL statement to check if the user's credentials are valid
-$sql = "SELECT username,password, account_type FROM users WHERE username='$username' AND password='$password'";
+$sql = "SELECT id, username,password, account_type FROM users WHERE username='$username' AND password='$password'";
 
 // Execute the SQL statement
 $result = mysqli_query($conn, $sql);
@@ -28,15 +28,21 @@ if (mysqli_num_rows($result) == 1) {
     // If there is, the user's credentials are valid
     $row = mysqli_fetch_assoc($result);
     if ($row['account_type'] == 'admin'){
+        session_start();
+        $_SESSION['id'] = $row['id'];
         header('Location: Manager.php');
     } 
     else if ($row['account_type'] == 'user'){
+        session_start();
+        $_SESSION['id'] = $row['id']; 
         header('Location: User.php');
     }
 } else {
     // If there isn't, the user's credentials are invalid
     echo "Invalid username or password.";
 }
+
+
 
 // Close the MySQL connection
 mysqli_close($conn);

@@ -13,8 +13,13 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+
+session_start();
+$id = $_SESSION['id'];
+
+
 // Prepare the SQL statement to retrieve the manager data
-$sql = "SELECT * FROM manager";
+$sql = "SELECT * FROM manager WHERE manager_id = $id";
 
 // Execute the SQL statement
 $result = mysqli_query($conn, $sql);
@@ -24,6 +29,8 @@ if (mysqli_num_rows($result) > 0) {
     // If there are, display the data in an unordered list
     echo "<ul>";
     while ($row = mysqli_fetch_assoc($result)) {
+        echo "Welcome " .$row['manager_first_name'] . "!";
+        echo "<br><br><br><br><br>";
         echo "<li><strong>Manager ID:</strong> ".$row['manager_id']."</li>";
         echo "<li><strong>First Name:</strong> ".$row['manager_first_name']."</li>";
         echo "<li><strong>Last Name:</strong> ".$row['manager_last_name']."</li>";
@@ -32,6 +39,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<li><strong>State:</strong> ".$row['state']."</li>";
         echo "<li><strong>Zip Code:</strong> ".$row['zip_code']."</li>";
         echo "<li><strong>Phone Number:</strong> ".$row['phone_number']."</li>";
+        echo "<br>";
     }
     echo "</ul>";
 
@@ -48,17 +56,18 @@ mysqli_close($conn);
 
 <div class="buttons-container">
     <button><a href="Workers.php">Workers</a></button>
-    <button><a href="Ingredient_Inventory_Report.php">Ingredients</a></button>
-    <button><a href="Product_Inventory_Report.php">Products</a></button>
+    <button><a href="Ingredient_Inventory_Report.php">Ingredients Inventory</a></button>
+    <button><a href="Product_Inventory_Report.php">Products Inventory</a></button>
+    <button><a href="Shipping.php">Shipping Details</a></button>
 </div>
 
 
 <style>
     ul {
-  font-size: 30px;
+  font-size: 50px;
 }
 h2 {
-  font-size: 30px;
+  font-size: 50px;
 }
 body {
   background-color: aquamarine;
