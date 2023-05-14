@@ -37,6 +37,11 @@ if (mysqli_num_rows($result) == 1) {
         $_SESSION['id'] = $row['id']; 
         header('Location: User.php');
     }
+    else if ($row['account_type'] == 'employee'){
+        session_start();
+        $_SESSION['id'] = $row['id']; 
+        header('Location: Employee.php');
+    }
 } else {
     // If there isn't, the user's credentials are invalid
     echo "Invalid username or password.";

@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 012357748
+    volumes:
+      - db_data:/var/lib/mysql
+  app:
+    build: .
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html/
+volumes:
+  db_data:
